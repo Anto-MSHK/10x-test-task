@@ -144,12 +144,15 @@ function cardTemplate(course) {
 function renderCount(matchCount) {
   const isFiltering = state.category !== ALL_ID || state.query.trim() !== '';
   if (!isFiltering) {
-    els.count.hidden = true;
+    // Keep the (reserved) slot in flow and just fade it out — clearing the text
+    // so the aria-live region stays quiet when there is nothing to announce.
+    els.count.classList.remove('catalog__count--visible');
+    els.count.textContent = '';
     return;
   }
   const noun = matchCount === 1 ? 'course' : 'courses';
   els.count.textContent = `Found ${matchCount} ${noun}`;
-  els.count.hidden = false;
+  els.count.classList.add('catalog__count--visible');
 }
 
 function render() {

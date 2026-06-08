@@ -69,11 +69,16 @@
     line-height: 1.6;
   }
 
-  // Count sits like a superscript next to the label.
+  // Count sits like a superscript next to the label. Its width is reserved for
+  // two tabular digits so the tab keeps the same width whether the count is 0,
+  // 9 or 17 — when search shrinks the counters, no tab (or the row) shifts.
   &__count {
+    display: inline-block;
+    min-width: 2ch;
     font-size: 10px;
     font-weight: 900;
     line-height: 1.5;
+    font-variant-numeric: tabular-nums;
   }
 
   &--active {

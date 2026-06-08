@@ -51,8 +51,9 @@
         </form>
       </div>
 
-      <!-- Result counter — shown only while a filter or search is active -->
-      <p class="catalog__count" id="count" role="status" aria-live="polite" hidden></p>
+      <!-- Result counter — its slot is always reserved; the text fades in only
+           while a filter or search is active, so the cards never move. -->
+      <p class="catalog__count" id="count" role="status" aria-live="polite"></p>
 
       <!-- Course cards are rendered by JS -->
       <ul class="courses catalog__courses" id="courses"></ul>

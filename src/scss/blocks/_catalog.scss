@@ -25,9 +25,21 @@
   }
 
   &__count {
+    // The slot is always reserved (one text line) so the counter can fade in
+    // and out without ever moving the cards below it. Only opacity/transform
+    // animate — never layout.
+    min-height: 1.5em;
     margin-bottom: clamp(16px, 2vw, 24px);
     font-size: 16px;
     color: var(--color-gray-700);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    &--visible {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   &__empty {
