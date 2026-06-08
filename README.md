@@ -5,7 +5,7 @@ pixel-perfect по макету из Figma. Без фреймворков и б�
 **HTML + vanilla JS + SCSS**, разметка организована по
 [методологии BEM](https://ru.bem.info/methodology/).
 
-🔗 **Демо:** _вставьте сюда ссылку на Vercel/Netlify_
+🔗 **Демо:** https://anto-mshk.github.io/10x-test-task/
 🎨 **Figma:** [Test Task](https://www.figma.com/design/iuXLXifXgv4ZCzad0KeYKr/Test-Task?node-id=0-1)
 
 ## Возможности
