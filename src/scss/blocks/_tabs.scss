@@ -8,6 +8,11 @@
   align-items: center;
   gap: 12px;
 
+  // Reserve the height of a rendered tab (10px padding ×2 + 1px border ×2 +
+  // 1.6 × 16px label) so the controls row keeps its height while #tabs is still
+  // empty and JS fills it in — no shift of the search field on load.
+  min-height: 47.6px;
+
   // On narrow viewports the tabs scroll horizontally instead of piling up
   // into several rows. The scrollbar is hidden for a clean look.
   overflow-x: auto;

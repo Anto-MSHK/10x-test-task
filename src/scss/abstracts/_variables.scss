@@ -24,7 +24,7 @@
   --color-white: #ffffff;
 
   // Typography
-  --font-base: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-base: 'Lato', 'Lato Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 
   // Shape
   --radius: 4px;

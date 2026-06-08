@@ -16,11 +16,18 @@
   gap: 16px 24px;
 
   &__tabs {
-    flex: 100 1 auto;
+    // A very large grow factor lets the tabs absorb essentially ALL the free
+    // space on the wide row, so the search keeps its ~315px design width — and,
+    // crucially, the search barely changes (<1px) when the JS-rendered tabs gain
+    // their intrinsic width, so there is no layout shift on load (CLS).
+    flex: 9999 1 auto;
     min-width: 0; // allow the scrollable strip to shrink below content width
   }
 
   &__search {
+    // grow:1 so that when the row gets narrow and the search wraps onto its own
+    // line it stretches to full width (no media query). Next to the tabs its
+    // width is pinned by the tabs' huge grow factor above.
     flex: 1 1 315px;
   }
 }

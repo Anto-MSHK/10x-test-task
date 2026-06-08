@@ -1,100 +1,109 @@
-# Our online courses — catalog
+# Our online courses — каталог курсов
 
-Card catalog with **live search** and **category filtering**, built pixel-perfect
-from a Figma mock. No frameworks or libraries — **HTML + vanilla JS + SCSS**,
-markup organised by the [BEM methodology](https://en.bem.info/methodology/).
+Каталог карточек с **живым поиском** и **фильтрацией по категориям**, свёрстанный
+pixel-perfect по макету из Figma. Без фреймворков и библиотек —
+**HTML + vanilla JS + SCSS**, разметка организована по
+[методологии BEM](https://ru.bem.info/methodology/).
 
-🔗 **Live demo:** _add your Vercel/Netlify link here_
+🔗 **Демо:** _вставьте сюда ссылку на Vercel/Netlify_
 🎨 **Figma:** [Test Task](https://www.figma.com/design/iuXLXifXgv4ZCzad0KeYKr/Test-Task?node-id=0-1)
 
-## Features
+## Возможности
 
-- **Pixel-perfect** layout from 1920 px down to 320 px (verified against the
-  Figma tokens: container 1230, card 390, gap 30, etc.).
-- **Fluid responsive** design — no layout breakpoints. The grid flows 3 → 2 → 1
-  columns via CSS Grid `auto-fill` + `minmax`, the controls reflow with
-  `flex-wrap`, and sizes scale with `clamp()`.
-- **Live search** by course title (instant, debounced, no reload) with the
-  matched text **highlighted** in the results.
-- **Category filtering** via tabs with live counters; search and category
-  combine, and a result counter appears while filtering.
-- **Load more** pagination with an empty state.
-- **Shareable state** — the active category and query are synced to the URL
-  (`?category=…&q=…`); links restore the view and the browser Back button works.
-- **Accessible** — the filter is a proper `radiogroup` with full keyboard
-  support (←/→/↑/↓, Home/End, roving `tabindex`), a labelled search field
-  (Esc clears it), visible `:focus-visible` rings, alt text and lazy images.
-- **Mobile polish** — the category tabs become a horizontal-scroll strip with
-  edge-fade hints instead of wrapping into a cluttered block.
-- Respects `prefers-reduced-motion`.
+- **Pixel-perfect** вёрстка от 1920 px до 320 px (выверено по токенам Figma:
+  контейнер 1230, карточка 390, gap 30 и т. д.).
+- **Fluid-адаптив** без брейкпоинтов: сетка перетекает 3 → 2 → 1 колонки через
+  CSS Grid `auto-fill` + `minmax`, контролы переносятся через `flex-wrap`,
+  размеры масштабируются через `clamp()`.
+- **Живой поиск** по названию курса (мгновенный, с debounce, без перезагрузки) с
+  **подсветкой** совпавшего текста в результатах.
+- **Фильтрация по категориям** через табы с живыми счётчиками; поиск и категория
+  комбинируются, а во время фильтрации появляется счётчик результатов.
+- **«Load more»** — пагинация с пустым состоянием.
+- **Состояние в ссылке** — активная категория и запрос синхронизируются с URL
+  (`?category=…&q=…`); ссылки восстанавливают вид, кнопка «Назад» в браузере
+  работает.
+- **Доступность (a11y)** — фильтр реализован как полноценный `radiogroup` с
+  поддержкой клавиатуры (←/→/↑/↓, Home/End, roving `tabindex`), поле поиска с
+  подписью (Esc очищает его), видимые `:focus-visible`-обводки, alt-тексты и
+  ленивая загрузка изображений.
+- **Стабильная раскладка** — Core Web Vitals выверены, CLS ≈ 0: ничего не
+  «прыгает» при загрузке (зарезервированы высоты, скроллбар-гаттер и
+  metric-совместимый fallback шрифта).
+- **Мобильные детали** — табы категорий превращаются в горизонтально
+  прокручиваемую ленту с подсказками-затуханиями по краям вместо нагромождения в
+  несколько строк.
+- Учитывает `prefers-reduced-motion`.
 
-## Tech stack
+## Технологии
 
-- **HTML5** — single static `index.html`.
-- **SCSS** — compiled to `css/main.css`. Source lives in `src/scss`, split into
-  `abstracts` (design tokens + mixins), `base` (reset) and one partial per BEM
-  block.
-- **Vanilla JS (ES modules)** — `src/js/data.js` is the single source of truth;
-  `src/js/main.js` renders tabs/cards and wires up the interactions.
+- **HTML5** — единственный статический `index.html`.
+- **SCSS** — компилируется в `css/main.css`. Исходники в `src/scss`, разбиты на
+  `abstracts` (дизайн-токены + миксины), `base` (reset) и по одному partial на
+  каждый BEM-блок.
+- **Vanilla JS (ES-модули)** — `src/js/data.js` это единственный источник данных;
+  `src/js/main.js` рендерит табы/карточки и подключает взаимодействия.
 
-## Project structure
+## Структура проекта
 
 ```
 .
 ├── index.html
 ├── css/
-│   └── main.css            # compiled SCSS (committed so the static deploy just works)
+│   └── main.css            # скомпилированный SCSS (закоммичен, чтобы статический деплой работал без сборки)
 ├── src/
 │   ├── scss/
-│   │   ├── main.scss       # entry point (@use)
-│   │   ├── abstracts/      # _variables (design tokens), _mixins
+│   │   ├── main.scss       # точка входа (@use)
+│   │   ├── abstracts/      # _variables (дизайн-токены), _mixins
 │   │   ├── base/           # _reset
 │   │   └── blocks/         # _catalog, _heading, _controls, _tabs, _search,
 │   │                       #   _courses, _card, _badge, _load-more, _decor
 │   └── js/
-│       ├── data.js         # courses + categories
-│       └── main.js         # rendering + search/filter/load-more
-└── assets/images/          # course photos, icons, decorative shapes (from Figma)
+│       ├── data.js         # курсы + категории
+│       └── main.js         # рендер + поиск/фильтр/load-more
+└── assets/images/          # фото курсов, иконки, декоративные фигуры (из Figma)
 ```
 
-## Getting started
+## Запуск
 
-Requires Node.js (for the SCSS compiler only).
+Требуется Node.js (только для компилятора SCSS).
 
 ```bash
-npm install        # installs the `sass` compiler
+npm install        # ставит компилятор `sass`
 
-npm run build      # compile src/scss → css/main.css (minified)
-npm run dev        # watch mode while developing
+npm run build      # компиляция src/scss → css/main.css (минифицировано)
+npm run dev        # режим watch во время разработки
 
-npm start          # serve the folder locally (http://localhost:3000)
+npm start          # локальный запуск папки (http://localhost:3000)
 ```
 
-The site is fully static — `css/main.css` is committed, so it also runs by just
-opening `index.html` through any static server.
+Сайт полностью статический — `css/main.css` закоммичен, поэтому он работает и
+просто при открытии `index.html` через любой статический сервер.
 
-## Deployment (Vercel / Netlify)
+## Деплой (Vercel / Netlify)
 
-No build step is required because `css/main.css` is committed.
+Шаг сборки не нужен, потому что `css/main.css` закоммичен.
 
-- **Vercel:** import the repo, framework preset **Other**, build command empty,
-  output directory `.` (root).
-- **Netlify:** publish directory `.` (root), build command empty.
+- **Vercel:** импортируйте репозиторий, framework preset **Other**, build command
+  пустой, output directory `.` (корень).
+- **Netlify:** publish directory `.` (корень), build command пустой.
 
-> If you prefer building on the host: build command `npm run build`, output `.`.
+> Если предпочитаете собирать на хостинге: build command `npm run build`,
+> output `.`.
 
-## Notes & possible improvements
+## Заметки и возможные улучшения
 
-- **Data set.** The mock shows 9 courses while the tab counters add up to 17.
-  I kept the 9 mock courses verbatim and added 8 more in the same style so the
-  counts match (Marketing 4 · Management 3 · HR & Recruting 5 · Design 2 ·
-  Development 3) and search / "Load more" are easy to try. The extra courses
-  reuse the mock photos.
-- Original mock typos (`Prduct`, `HR & Recruting`) are kept on purpose to stay
-  faithful to the design.
-- **Media queries.** The fluid layout uses none. The only two media queries are
-  cosmetic and don't affect layout: hiding the decorative background shapes on
-  small screens, and the `prefers-reduced-motion` block.
-- **What I'd add with more time:** a skeleton loading state, fetching the
-  courses from an API instead of a static module, and unit tests for the
-  filtering logic.
+- **Данные.** В макете показано 9 курсов, при этом счётчики на табах в сумме дают
+  17. Я намеренно добавил больше данных — чтобы каталог был интереснее и чтобы
+  взаимодействия реально можно было проверить: оставил 9 курсов из макета как
+  есть и добавил ещё 8 в том же стиле. Так счётчики сходятся (Marketing 4 ·
+  Management 3 · HR & Recruting 5 · Design 2 · Development 3) и, что важнее,
+  курсов хватает, чтобы по-настоящему опробовать живой поиск и пагинацию
+  «Load more». Дополнительные курсы переиспользуют фото из макета.
+- Оригинальные опечатки из макета (`Prduct`, `HR & Recruting`) оставлены
+  намеренно, чтобы быть верным дизайну.
+- **Media queries.** Fluid-раскладка не использует ни одного брейкпоинта.
+  Единственные две медиа-запроса косметические и не влияют на раскладку: скрытие
+  декоративных фоновых фигур на маленьких экранах и блок `prefers-reduced-motion`.
+- **Что бы добавил при наличии времени:** skeleton-состояние загрузки, получение
+  курсов из API вместо статического модуля и юнит-тесты на логику фильтрации.

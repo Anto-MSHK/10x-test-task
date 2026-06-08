@@ -2,6 +2,18 @@
 // Minimal modern reset
 // =============================================================================
 
+// Metric-compatible fallback: Arial reshaped (size-adjust + ascent/descent
+// overrides) to match Lato's box metrics, so when the web font swaps in there
+// is no reflow — no jump in the centred heading or the tab widths (CLS).
+@font-face {
+  font-family: 'Lato Fallback';
+  src: local('Arial');
+  ascent-override: 101.03%;
+  descent-override: 21.8%;
+  line-gap-override: 0%;
+  size-adjust: 97.49%;
+}
+
 *,
 *::before,
 *::after {
@@ -14,6 +26,11 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+
+  // Always reserve the scrollbar gutter so the layout viewport width is the same
+  // before and after JS fills the grid. Otherwise the scrollbar appears once the
+  // page grows tall and shifts the centred heading / right-anchored decor (CLS).
+  scrollbar-gutter: stable;
 }
 
 body {

@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- Inline SVG favicon (avoids a 404 with no extra request) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ff3f3a'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='20' font-weight='900' fill='%23fff' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E">
 </head>
 <body>
   <main class="catalog">
@@ -57,7 +60,9 @@
       <p class="catalog__empty" id="empty" hidden>No courses found. Try another search or category.</p>
 
       <div class="catalog__more">
-        <button class="load-more" id="load-more" type="button">
+        <!-- Hidden until JS renders the grid, so it never flashes high on the
+             page and then jumps down once the cards are injected (CLS). -->
+        <button class="load-more" id="load-more" type="button" hidden>
           <span class="load-more__icon" aria-hidden="true">
             <svg viewBox="0 0 21.7981 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C1.55228 0 2 0.447715 2 1V5.43632C3.65803 2.20928 7.01998 0 10.9 0C15.2556 0 18.9584 2.78413 20.3307 6.66675C20.5147 7.18747 20.2418 7.75879 19.7211 7.94284C19.2004 8.12689 18.6291 7.85396 18.445 7.33325C17.3463 4.22472 14.3817 2 10.9 2C7.93996 2 5.35365 3.60799 3.96994 6H6.99996C7.55225 6 7.99996 6.44772 7.99996 7C7.99996 7.55228 7.55225 8 6.99996 8H1C0.447715 8 0 7.55228 0 7V1C0 0.447715 0.447715 0 1 0Z" fill="currentColor"/>
