@@ -1,5 +1,11 @@
 // =============================================================================
 // Block: controls — the filters row (tabs on the left, search on the right)
+//
+// Breakpoint-free reflow:
+// • Tabs get a huge flex-grow so on a wide row they absorb the free space and
+//   the search keeps its ~315px design width on the right.
+// • The search has flex-grow: 1, so when the row gets too narrow and it wraps
+//   onto its own line, it stretches to full width — no media query needed.
 // =============================================================================
 
 .controls {
@@ -10,10 +16,11 @@
   gap: 16px 24px;
 
   &__tabs {
-    flex: 1 1 auto;
+    flex: 100 1 auto;
+    min-width: 0; // allow the scrollable strip to shrink below content width
   }
 
   &__search {
-    flex: 0 1 315px;
+    flex: 1 1 315px;
   }
 }

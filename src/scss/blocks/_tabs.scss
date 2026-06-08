@@ -4,12 +4,23 @@
 
 .tabs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 12px;
 
+  // On narrow viewports the tabs scroll horizontally instead of piling up
+  // into several rows. The scrollbar is hidden for a clean look.
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   &__item {
     display: flex;
+    flex: 0 0 auto; // keep each tab at its natural width while scrolling
   }
 }
 
