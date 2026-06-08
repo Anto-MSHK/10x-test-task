@@ -286,6 +286,11 @@ function bindEvents() {
 
 // -- Init ---------------------------------------------------------------------
 
+// Reserve the count width for the widest number that can ever show (the full
+// catalog size) so the tabs never resize as the counters shrink during search —
+// works for 17, 170 or 1700 courses without touching the CSS.
+els.tabs.style.setProperty('--tab-count-ch', String(COURSES.length).length);
+
 readStateFromUrl();
 renderTabs();
 render();

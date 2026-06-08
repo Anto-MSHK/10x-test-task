@@ -70,11 +70,13 @@
   }
 
   // Count sits like a superscript next to the label. Its width is reserved for
-  // two tabular digits so the tab keeps the same width whether the count is 0,
-  // 9 or 17 — when search shrinks the counters, no tab (or the row) shifts.
+  // the widest count that can ever appear (the full catalog size, since counts
+  // only shrink as you filter), so the tab keeps the same width whatever the
+  // number is — no tab (or the row) shifts when search changes the counters.
+  // `--tab-count-ch` is set by JS from the data; falls back to 2 digits.
   &__count {
     display: inline-block;
-    min-width: 2ch;
+    min-width: calc(var(--tab-count-ch, 2) * 1ch);
     font-size: 10px;
     font-weight: 900;
     line-height: 1.5;
