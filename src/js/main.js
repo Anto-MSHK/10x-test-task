@@ -66,10 +66,18 @@ function getMatches() {
   });
 }
 
-/** Total number of courses in a category (used for the tab counters). */
+/**
+ * Number of courses in a category that match the current search query.
+ * The category counters reflect the search (but not the selected tab), so the
+ * user can see how many results each category holds for the current query.
+ */
 function countFor(categoryId) {
-  if (categoryId === ALL_ID) return COURSES.length;
-  return COURSES.filter((course) => course.category === categoryId).length;
+  const query = state.query.trim().toLowerCase();
+  return COURSES.filter((course) => {
+    const byCategory = categoryId === ALL_ID || course.category === categoryId;
+    const byQuery = !query || course.title.toLowerCase().includes(query);
+    return byCategory && byQuery;
+  }).length;
 }
 
 // -- Rendering ----------------------------------------------------------------
@@ -80,17 +88,22 @@ function renderTabs({ focusActive = false } = {}) {
   els.tabs.innerHTML = tabs
     .map((tab) => {
       const isActive = tab.id === state.category;
+      const count = countFor(tab.id);
+      const isEmpty = count === 0;
+      const classes = ['tab'];
+      if (isActive) classes.push('tab--active');
+      if (isEmpty) classes.push('tab--empty'); // dim categories with no matches
       return `
         <li class="tabs__item" role="presentation">
           <button
-            class="tab${isActive ? ' tab--active' : ''}"
+            class="${classes.join(' ')}"
             type="button"
             role="radio"
             aria-checked="${isActive}"
             tabindex="${isActive ? 0 : -1}"
             data-category="${tab.id}">
             <span class="tab__label">${tab.name}</span>
-            <span class="tab__count">${countFor(tab.id)}</span>
+            <span class="tab__count">${count}</span>
           </button>
         </li>`;
     })
@@ -232,6 +245,7 @@ function bindEvents() {
     debounce((event) => {
       state.query = event.target.value;
       state.visible = PAGE_SIZE;
+      renderTabs(); // refresh the per-category counters for the new query
       render();
       syncUrl({ push: false });
     })
@@ -243,6 +257,7 @@ function bindEvents() {
       els.search.value = '';
       state.query = '';
       state.visible = PAGE_SIZE;
+      renderTabs();
       render();
       syncUrl({ push: false });
     }

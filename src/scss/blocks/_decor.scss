@@ -6,8 +6,9 @@
 //   so without it they would stretch/squash);
 // • everything is anchored from the TOP, not the bottom, so the shapes stay put
 //   when the grid height changes during search/filtering (no jumping);
-// • the whole layer is hidden on small screens — it is decoration only, so this
-//   single cosmetic media query does not affect the fluid layout.
+// • on small screens the layer is kept but toned down so it stays a subtle
+//   accent instead of clutter — this single cosmetic media query does not
+//   affect the fluid layout.
 // =============================================================================
 
 .decor {
@@ -47,8 +48,24 @@
   }
 }
 
+// Keep the shapes on mobile, just subtler and tucked into the corners so they
+// read as a light background accent rather than clutter.
 @media (max-width: 768px) {
   .decor {
-    display: none;
+    opacity: 0.55;
+  }
+
+  .decor__item--dots {
+    top: -10px;
+    right: -36px; // let the dots peek in from the corner
+    width: 88px;
+  }
+
+  .decor__item--chevrons {
+    top: clamp(360px, 90vw, 460px);
+  }
+
+  .decor__item--shapes {
+    top: clamp(620px, 180vw, 900px);
   }
 }

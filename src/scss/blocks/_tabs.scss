@@ -75,4 +75,10 @@
     color: var(--color-primary);
     border-color: var(--color-primary);
   }
+
+  // Category has no matches for the current search — dim it (but never the
+  // currently selected tab, which must stay clearly readable).
+  &--empty:not(#{&}--active) {
+    opacity: 0.4;
+  }
 }
