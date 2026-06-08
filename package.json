@@ -1,0 +1,14 @@
+{
+  "name": "online-courses-catalog",
+  "version": "1.0.0",
+  "description": "Pixel-perfect online courses catalog with live search and category filtering (HTML + vanilla JS + SCSS, BEM).",
+  "private": true,
+  "scripts": {
+    "build": "sass src/scss/main.scss css/main.css --style=compressed --no-source-map",
+    "dev": "sass --watch src/scss/main.scss css/main.css",
+    "start": "npx --yes serve ."
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
