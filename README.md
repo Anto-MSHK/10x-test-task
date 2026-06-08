@@ -9,16 +9,24 @@ markup organised by the [BEM methodology](https://en.bem.info/methodology/).
 
 ## Features
 
-- **Pixel-perfect** layout from 1920 px down to 320 px.
-- **Fluid responsive** design — no hard breakpoints. The grid flows 3 → 2 → 1
+- **Pixel-perfect** layout from 1920 px down to 320 px (verified against the
+  Figma tokens: container 1230, card 390, gap 30, etc.).
+- **Fluid responsive** design — no layout breakpoints. The grid flows 3 → 2 → 1
   columns via CSS Grid `auto-fill` + `minmax`, the controls reflow with
   `flex-wrap`, and sizes scale with `clamp()`.
-- **Live search** by course title (instant, debounced, no reload).
+- **Live search** by course title (instant, debounced, no reload) with the
+  matched text **highlighted** in the results.
 - **Category filtering** via tabs with live counters; search and category
-  combine.
+  combine, and a result counter appears while filtering.
 - **Load more** pagination with an empty state.
-- Accessible: semantic markup, `role`/`aria` on tabs, a labelled search field,
-  alt text and lazy-loaded images.
+- **Shareable state** — the active category and query are synced to the URL
+  (`?category=…&q=…`); links restore the view and the browser Back button works.
+- **Accessible** — the filter is a proper `radiogroup` with full keyboard
+  support (←/→/↑/↓, Home/End, roving `tabindex`), a labelled search field
+  (Esc clears it), visible `:focus-visible` rings, alt text and lazy images.
+- **Mobile polish** — the category tabs become a horizontal-scroll strip with
+  edge-fade hints instead of wrapping into a cluttered block.
+- Respects `prefers-reduced-motion`.
 
 ## Tech stack
 
@@ -84,6 +92,9 @@ No build step is required because `css/main.css` is committed.
   reuse the mock photos.
 - Original mock typos (`Prduct`, `HR & Recruting`) are kept on purpose to stay
   faithful to the design.
-- **What I'd add with more time:** keyboard arrow navigation between tabs,
-  reflecting the active filter/search in the URL (shareable state), a skeleton
-  loading state, and unit tests for the filtering logic.
+- **Media queries.** The fluid layout uses none. The only two media queries are
+  cosmetic and don't affect layout: hiding the decorative background shapes on
+  small screens, and the `prefers-reduced-motion` block.
+- **What I'd add with more time:** a skeleton loading state, fetching the
+  courses from an API instead of a static module, and unit tests for the
+  filtering logic.

@@ -18,6 +18,25 @@
     display: none;
   }
 
+  // Edge fade hints (toggled by JS) — only present when the strip can scroll,
+  // so they never appear on the desktop row where all tabs fit.
+  $fade: 28px;
+
+  &--fade-end {
+    mask-image: linear-gradient(to right, #000 calc(100% - #{$fade}), transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - #{$fade}), transparent);
+  }
+
+  &--fade-start {
+    mask-image: linear-gradient(to left, #000 calc(100% - #{$fade}), transparent);
+    -webkit-mask-image: linear-gradient(to left, #000 calc(100% - #{$fade}), transparent);
+  }
+
+  &--fade-start#{&}--fade-end {
+    mask-image: linear-gradient(to right, transparent, #000 #{$fade}, #000 calc(100% - #{$fade}), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 #{$fade}, #000 calc(100% - #{$fade}), transparent);
+  }
+
   &__item {
     display: flex;
     flex: 0 0 auto; // keep each tab at its natural width while scrolling

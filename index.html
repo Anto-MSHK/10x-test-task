@@ -29,7 +29,7 @@
 
       <div class="controls catalog__controls">
         <!-- Category tabs are rendered by JS from the data source -->
-        <ul class="tabs controls__tabs" id="tabs" role="tablist" aria-label="Course categories"></ul>
+        <ul class="tabs controls__tabs" id="tabs" role="radiogroup" aria-label="Filter courses by category"></ul>
 
         <form class="search controls__search" role="search" action="#" novalidate>
           <label class="search__label" for="search-input">Search course</label>
@@ -47,6 +47,9 @@
           </span>
         </form>
       </div>
+
+      <!-- Result counter — shown only while a filter or search is active -->
+      <p class="catalog__count" id="count" role="status" aria-live="polite" hidden></p>
 
       <!-- Course cards are rendered by JS -->
       <ul class="courses catalog__courses" id="courses"></ul>

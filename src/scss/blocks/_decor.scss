@@ -1,7 +1,13 @@
 // =============================================================================
 // Block: decor — decorative background shapes from the mock.
-// Purely visual: positioned at the edges, clipped by .catalog overflow,
-// and sized with vw so they scale instead of breaking the layout.
+//
+// Purely visual. A few deliberate choices:
+// • aspect-ratio is set per shape (the source SVGs use preserveAspectRatio="none",
+//   so without it they would stretch/squash);
+// • everything is anchored from the TOP, not the bottom, so the shapes stay put
+//   when the grid height changes during search/filtering (no jumping);
+// • the whole layer is hidden on small screens — it is decoration only, so this
+//   single cosmetic media query does not affect the fluid layout.
 // =============================================================================
 
 .decor {
@@ -9,27 +15,40 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 
   &__item {
     position: absolute;
+    height: auto;
   }
 
   &__item--dots {
-    top: clamp(8px, 2vw, 24px);
-    right: clamp(-24px, -1vw, 0px);
-    width: clamp(80px, 9vw, 143px);
+    top: clamp(8px, 2vw, 28px);
+    right: clamp(-24px, -1vw, 4px);
+    width: clamp(96px, 9vw, 143px);
+    aspect-ratio: 143 / 105;
     opacity: 0.8;
+    transform: rotate(60deg);
   }
 
   &__item--chevrons {
-    top: 34%;
+    top: clamp(420px, 38vw, 620px);
     left: clamp(16px, 3vw, 56px);
-    width: clamp(48px, 5vw, 83px);
+    width: clamp(56px, 5vw, 83px);
+    aspect-ratio: 83 / 44;
   }
 
   &__item--shapes {
-    right: clamp(-12px, 0vw, 24px);
-    bottom: clamp(40px, 6vw, 90px);
-    width: clamp(48px, 5vw, 85px);
+    top: clamp(840px, 70vw, 1180px);
+    right: clamp(8px, 1vw, 40px);
+    width: clamp(56px, 5vw, 85px);
+    aspect-ratio: 1;
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .decor {
+    display: none;
   }
 }
