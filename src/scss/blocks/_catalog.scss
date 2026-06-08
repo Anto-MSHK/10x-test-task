@@ -1,0 +1,39 @@
+// =============================================================================
+// Block: catalog — the page section that hosts everything
+// =============================================================================
+
+@use '../abstracts/mixins' as *;
+
+.catalog {
+  position: relative;
+  overflow: hidden; // clip decorative shapes that sit near the edges
+  padding-block: clamp(48px, 8vw, 95px) clamp(48px, 8vw, 90px);
+
+  &__container {
+    @include container;
+
+    position: relative;
+    z-index: 1; // keep content above decor
+  }
+
+  &__heading {
+    margin-bottom: clamp(32px, 4vw, 52px);
+  }
+
+  &__controls {
+    margin-bottom: clamp(28px, 3vw, 60px);
+  }
+
+  &__empty {
+    padding-block: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--color-gray-700);
+  }
+
+  &__more {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(40px, 5vw, 80px);
+  }
+}

@@ -1,0 +1,33 @@
+// =============================================================================
+// Mixins & helpers
+// =============================================================================
+
+// Centered, fluid content container. Caps at --container and keeps a fluid
+// side gutter, so the layout scales smoothly from 320px up to 1920px without
+// hard breakpoints.
+@mixin container {
+  width: min(100% - 2 * clamp(16px, 5vw, 48px), var(--container));
+  margin-inline: auto;
+}
+
+// Visually hide an element while keeping it available to screen readers.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// Clamp text to a fixed number of lines.
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

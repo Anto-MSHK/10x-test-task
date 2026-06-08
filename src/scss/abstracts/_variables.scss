@@ -1,0 +1,46 @@
+// =============================================================================
+// Design tokens — taken 1:1 from the Figma file (colors, type, shadows, sizes).
+// Exposed as CSS custom properties so blocks reference them via var().
+// =============================================================================
+
+:root {
+  // Brand & semantic colors
+  --color-primary: #ff3f3a;   // active tab
+  --color-secondary: #ffcf2d;
+  --color-danger: #ff4242;    // price
+  --color-success: #03cea4;   // Marketing badge
+  --color-warning: #f89828;   // HR & Recruting badge
+  --color-info: #5a87fc;      // Management badge
+  --color-pink: #f52f6e;      // Design badge
+  --color-purple: #7772f1;    // Development badge
+
+  // Neutrals
+  --color-gray-900: #1e212c;  // headings, card titles
+  --color-gray-800: #424551;  // "Load more"
+  --color-gray-700: #787a80;  // card author
+  --color-gray-600: #9a9ca5;  // placeholder, inactive tab
+  --color-gray-400: #d7dadd;  // search border
+  --color-gray-300: #e5e8ed;  // card border, divider
+  --color-white: #ffffff;
+
+  // Typography
+  --font-base: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  // Shape
+  --radius: 4px;
+
+  // Layout
+  --container: 1230px;
+
+  // Card shadows (Figma effect styles)
+  --shadow-card:
+    0 4px 4px -4px rgba(30, 33, 44, 0.03),
+    0 12px 10px -6px rgba(154, 156, 165, 0.04),
+    0 30px 24px -10px rgba(154, 156, 165, 0.05),
+    0 80px 80px -20px rgba(154, 156, 165, 0.08);
+  --shadow-card-hover:
+    0 4px 4px -4px rgba(30, 33, 44, 0.05),
+    0 12px 10px -6px rgba(154, 156, 165, 0.08),
+    0 30px 24px -10px rgba(154, 156, 165, 0.10),
+    0 80px 80px -20px rgba(154, 156, 165, 0.16);
+}

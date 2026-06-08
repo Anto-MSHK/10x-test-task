@@ -1,0 +1,27 @@
+// =============================================================================
+// Block: heading — the page title group
+// =============================================================================
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+
+  &__overline {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-gray-900);
+  }
+
+  &__title {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--color-gray-900);
+  }
+}

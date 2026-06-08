@@ -1,0 +1,22 @@
+// =============================================================================
+// Block: badge — the category label on a card
+// Modifiers map a category to its Figma color.
+// =============================================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-white);
+  white-space: nowrap;
+
+  &--marketing   { background-color: var(--color-success); }
+  &--management  { background-color: var(--color-info); }
+  &--hr          { background-color: var(--color-warning); }
+  &--design      { background-color: var(--color-pink); }
+  &--development { background-color: var(--color-purple); }
+}

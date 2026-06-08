@@ -1,0 +1,13 @@
+// =============================================================================
+// Block: courses — the responsive card grid
+//
+// auto-fill + minmax give a fluid 3 → 2 → 1 column flow with no media queries:
+// at the 1230px container three 390px cards fit exactly (mock), and columns
+// drop automatically as the viewport narrows.
+// =============================================================================
+
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: clamp(16px, 2vw, 30px);
+}

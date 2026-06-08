@@ -1,0 +1,19 @@
+// =============================================================================
+// Block: controls — the filters row (tabs on the left, search on the right)
+// =============================================================================
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+
+  &__tabs {
+    flex: 1 1 auto;
+  }
+
+  &__search {
+    flex: 0 1 315px;
+  }
+}

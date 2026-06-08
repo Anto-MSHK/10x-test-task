@@ -1,0 +1,22 @@
+// =============================================================================
+// Entry point — assembles all layers (abstracts → base → blocks).
+// =============================================================================
+
+// Abstracts: design tokens & helpers (no CSS output except :root tokens).
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+// Base: reset & global rules.
+@use 'base/reset';
+
+// Blocks (BEM): one partial per block.
+@use 'blocks/catalog';
+@use 'blocks/decor';
+@use 'blocks/heading';
+@use 'blocks/controls';
+@use 'blocks/tabs';
+@use 'blocks/search';
+@use 'blocks/courses';
+@use 'blocks/card';
+@use 'blocks/badge';
+@use 'blocks/load-more';

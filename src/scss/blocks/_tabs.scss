@@ -1,0 +1,48 @@
+// =============================================================================
+// Blocks: tabs (list) & tab (single category button)
+// =============================================================================
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+
+  &__item {
+    display: flex;
+  }
+}
+
+.tab {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--color-gray-600);
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &__label {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  // Count sits like a superscript next to the label.
+  &__count {
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  &--active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
